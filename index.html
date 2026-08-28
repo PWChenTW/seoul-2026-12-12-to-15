@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="2026 年 12 月首爾旅行的 17 個收藏地點資料庫">
-  <title>與豬豬文吃首爾｜地點資料庫</title>
+  <meta name="description" content="與豬豬文吃首爾：2026 年 12 月首爾四日旅遊手冊">
+  <title>與豬豬文吃首爾｜2026 冬季旅遊手冊</title>
   <style>
     :root {
       --ink: #1d2421;
@@ -24,6 +24,8 @@
     * { box-sizing: border-box; }
 
     html { scroll-behavior: smooth; }
+
+    [id] { scroll-margin-top: 112px; }
 
     body {
       margin: 0;
@@ -201,7 +203,7 @@
 
     .controls-shell {
       position: sticky;
-      top: 0;
+      top: 50px;
       z-index: 10;
       margin-top: 44px;
       padding: 14px 0;
@@ -444,20 +446,302 @@
 
     footer p { margin: 4px 0; }
 
+    .book-nav {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      color: #fff;
+      background: rgba(12, 42, 34, 0.96);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(16px);
+    }
+
+    .book-nav .wrap {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      min-height: 50px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .book-nav .wrap::-webkit-scrollbar { display: none; }
+
+    .book-mark {
+      flex: 0 0 auto;
+      color: #f3d48e;
+      font-family: Georgia, serif;
+      font-size: 0.84rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+    }
+
+    .book-nav a {
+      flex: 0 0 auto;
+      padding: 14px 2px 12px;
+      color: rgba(255, 255, 255, 0.72);
+      border-bottom: 2px solid transparent;
+      font-size: 0.82rem;
+      text-decoration: none;
+    }
+
+    .book-nav a:hover {
+      color: #fff;
+      border-bottom-color: var(--gold);
+    }
+
+    .cover-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 220px;
+      gap: 48px;
+      align-items: end;
+    }
+
+    .cover-stamp {
+      justify-self: end;
+      width: 188px;
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      padding: 26px;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 50%;
+      color: #f4daa0;
+      text-align: center;
+      font-family: Georgia, serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      line-height: 1.55;
+      transform: rotate(4deg);
+    }
+
+    .chapter-label {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin: 0 0 8px;
+      color: var(--coral);
+      font-size: 0.76rem;
+      font-weight: 850;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .chapter-label::before {
+      content: "";
+      width: 26px;
+      height: 2px;
+      background: currentColor;
+    }
+
+    .chapter-intro {
+      max-width: 760px;
+      margin: -6px 0 22px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .day-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .day-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 270px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: var(--card);
+    }
+
+    .day-card::after {
+      content: attr(data-day);
+      position: absolute;
+      right: -3px;
+      bottom: -27px;
+      color: rgba(23, 72, 59, 0.06);
+      font-family: Georgia, serif;
+      font-size: 7rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .day-date {
+      margin: 0;
+      color: var(--coral);
+      font-size: 0.76rem;
+      font-weight: 850;
+      letter-spacing: 0.1em;
+    }
+
+    .day-card h3 {
+      margin: 8px 0 4px;
+      color: var(--pine);
+      font-family: Georgia, "Noto Serif TC", serif;
+      font-size: 1.35rem;
+    }
+
+    .day-status {
+      display: inline-flex;
+      margin: 6px 0 16px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      color: #80532d;
+      background: #f7ead0;
+      font-size: 0.72rem;
+      font-weight: 800;
+    }
+
+    .day-card ul {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .district-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.8fr 0.8fr;
+      gap: 14px;
+    }
+
+    .district {
+      position: relative;
+      min-height: 260px;
+      padding: 24px;
+      border-radius: 22px;
+      color: #fff;
+      overflow: hidden;
+      background: var(--pine);
+    }
+
+    .district:nth-child(2) { background: #8f4836; }
+    .district:nth-child(3) { color: var(--ink); background: #e6c875; }
+
+    .district-no {
+      color: rgba(255, 255, 255, 0.58);
+      font-family: Georgia, serif;
+      font-size: 0.82rem;
+    }
+
+    .district:nth-child(3) .district-no { color: rgba(29, 36, 33, 0.55); }
+
+    .district h3 {
+      margin: 18px 0 8px;
+      font-family: Georgia, "Noto Serif TC", serif;
+      font-size: 1.7rem;
+      line-height: 1.2;
+    }
+
+    .district p {
+      max-width: 40ch;
+      margin: 0;
+      color: rgba(255, 255, 255, 0.74);
+      font-size: 0.88rem;
+    }
+
+    .district:nth-child(3) p { color: rgba(29, 36, 33, 0.72); }
+
+    .district footer {
+      position: absolute;
+      left: 24px;
+      right: 24px;
+      bottom: 20px;
+      padding: 12px 0 0;
+      color: inherit;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      font-size: 0.78rem;
+    }
+
+    .district:nth-child(3) footer { border-top-color: rgba(29, 36, 33, 0.2); }
+
+    .comparison {
+      width: 100%;
+      border-spacing: 0;
+      border-collapse: separate;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--card);
+    }
+
+    .comparison th,
+    .comparison td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+      font-size: 0.88rem;
+    }
+
+    .comparison th {
+      color: var(--pine);
+      background: var(--pine-soft);
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+    }
+
+    .comparison tr:last-child td { border-bottom: 0; }
+
+    .handbook-checklist {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .check-item {
+      display: flex;
+      gap: 9px;
+      align-items: flex-start;
+      padding: 13px;
+      border: 1px dashed #bcb3a3;
+      border-radius: 14px;
+      color: var(--muted);
+      background: rgba(255, 253, 248, 0.55);
+      font-size: 0.82rem;
+    }
+
+    .check-box {
+      flex: 0 0 auto;
+      width: 17px;
+      height: 17px;
+      margin-top: 2px;
+      border: 1.5px solid var(--pine);
+      border-radius: 4px;
+    }
+
     @media (max-width: 920px) {
+      .cover-grid { grid-template-columns: 1fr; }
+      .cover-stamp { display: none; }
       .stats { grid-template-columns: repeat(2, 1fr); }
       .planning-grid { grid-template-columns: repeat(2, 1fr); }
+      .day-grid { grid-template-columns: repeat(2, 1fr); }
+      .district-grid { grid-template-columns: 1fr; }
+      .district { min-height: 230px; }
+      .handbook-checklist { grid-template-columns: repeat(2, 1fr); }
       .controls { grid-template-columns: 1fr 1fr; }
       .controls .search { grid-column: 1 / -1; }
       .cards { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 560px) {
+      .book-mark { display: none; }
       .wrap { width: min(100% - 22px, 1180px); }
       .hero { padding-top: 46px; }
       .stats { gap: 8px; }
       .stat { min-height: 98px; padding: 16px; }
       .planning-grid { grid-template-columns: 1fr; }
+      .day-grid { grid-template-columns: 1fr; }
+      .handbook-checklist { grid-template-columns: 1fr; }
+      .comparison { display: block; overflow-x: auto; }
       .controls { grid-template-columns: 1fr; }
       .controls .search { grid-column: auto; }
       .place-card { padding: 18px; }
@@ -465,7 +749,9 @@
     }
 
     @media print {
+      @page { size: A4; margin: 14mm; }
       body { background: #fff; }
+      .book-nav { display: none; }
       .hero { padding: 28px 0; color: #111; background: #fff; border-bottom: 2px solid #111; }
       .hero-copy, .hero-meta span { color: #333; }
       .hero-meta span { border-color: #bbb; background: #fff; }
@@ -474,25 +760,44 @@
       .stat, .place-card { box-shadow: none; break-inside: avoid; }
       .cards { grid-template-columns: 1fr; }
       .planning-grid { grid-template-columns: repeat(2, 1fr); }
+      .day-grid { grid-template-columns: repeat(2, 1fr); }
+      .district-grid { grid-template-columns: 1fr; }
+      .district { min-height: 180px; print-color-adjust: exact; }
+      .section { break-before: auto; }
     }
   </style>
 </head>
 <body>
-  <header class="hero">
+  <nav class="book-nav" aria-label="旅遊手冊目錄">
     <div class="wrap">
-      <p class="eyebrow">Seoul · 2026 Winter</p>
-      <h1>與豬豬文吃首爾</h1>
-      <p class="hero-copy">把 NAVER 收藏整理成一份離線可讀的地點資料庫。先按區域看，再用搜尋與篩選快速找出早餐、正餐、甜點、宵夜和住宿。</p>
-      <div class="hero-meta" aria-label="旅行資料">
-        <span>2026/12/12（六）– 12/15（二）</span>
-        <span>資料快照：2026/08/28</span>
-        <span>首爾 4 天 3 夜</span>
+      <span class="book-mark">SEOUL ’26</span>
+      <a href="#cover">封面</a>
+      <a href="#overview">旅程總覽</a>
+      <a href="#draft">四日框架</a>
+      <a href="#districts">區域導覽</a>
+      <a href="#lodging">住宿比較</a>
+      <a href="#places">地點圖鑑</a>
+    </div>
+  </nav>
+
+  <header class="hero" id="cover">
+    <div class="wrap cover-grid">
+      <div>
+        <p class="eyebrow">Seoul Winter Travel Handbook · Vol. 01</p>
+        <h1>與豬豬文<br>吃首爾</h1>
+        <p class="hero-copy">一冊收好四天三夜的候選餐廳、住宿比較與區域動線。現在是「選點版」手冊；航班與住宿確認後，再把四日框架排成正式時刻表。</p>
+        <div class="hero-meta" aria-label="旅行資料">
+          <span>2026/12/12（六）– 12/15（二）</span>
+          <span>首爾 4 天 3 夜</span>
+          <span>17 個候選地點</span>
+        </div>
       </div>
+      <div class="cover-stamp" aria-hidden="true">SEOUL<br>WINTER<br>12 · 2026<br>TRAVEL NOTES</div>
     </div>
   </header>
 
   <main>
-    <section class="wrap stats" aria-label="收藏統計">
+    <section class="wrap stats" id="overview" aria-label="旅程統計">
       <div class="stat"><strong>17</strong><span>收藏地點</span></div>
       <div class="stat"><strong>12</strong><span>弘大／延南／望遠</span></div>
       <div class="stat"><strong>2</strong><span>安國／北村</span></div>
@@ -500,13 +805,127 @@
     </section>
 
     <section class="section wrap" aria-labelledby="planningTitle">
+      <p class="chapter-label">Chapter 01 · Decisions</p>
       <h2 class="section-title" id="planningTitle">排程前先知道</h2>
+      <p class="chapter-intro">這五組是手冊裡最需要取捨的地方。先決定主目標，其餘就能當備案，不會為了全部吃到而讓行程變成趕場。</p>
       <div class="planning-grid">
         <article class="planning-card"><b>快速早餐</b><p>Isaac Toast 與 EGGDROP 二選一即可，都是弘大彈性選項。</p></article>
         <article class="planning-card"><b>安國排隊店</b><p>London Bagel 與 Artist Bakery 可一間內用、一間外帶，不必各占一餐。</p></article>
         <article class="planning-card"><b>聖水正餐</b><p>Neungdong Minari 偏熱湯午餐；Kkubdang 偏烤肉晚餐。</p></article>
         <article class="planning-card"><b>弘大宵夜</b><p>No More Pizza、Puradak 都可保留為當晚看胃口的備案。</p></article>
         <article class="planning-card"><b>住宿取向</b><p>Stay Passport 重房間體驗；Amanti 重視前台與標準飯店服務。</p></article>
+      </div>
+    </section>
+
+    <section class="section wrap" id="draft" aria-labelledby="draftTitle">
+      <p class="chapter-label">Chapter 02 · Four-day Canvas</p>
+      <h2 class="section-title" id="draftTitle">四日行程工作頁</h2>
+      <p class="chapter-intro">這是按區域密度做的暫定框架，不是定案。抵離時間與住宿確認後，再把餐廳和景點放進正確時段。</p>
+      <div class="day-grid">
+        <article class="day-card" data-day="1">
+          <p class="day-date">12.12 SAT · DAY 01</p>
+          <h3>抵達／弘大</h3>
+          <span class="day-status">等待航班資料</span>
+          <ul>
+            <li>入住或先寄放行李</li>
+            <li>第一餐優先選車站附近</li>
+            <li>延南洞散步或弘大晚餐</li>
+            <li>宵夜保留彈性</li>
+          </ul>
+        </article>
+        <article class="day-card" data-day="2">
+          <p class="day-date">12.13 SUN · DAY 02</p>
+          <h3>安國／北村</h3>
+          <span class="day-status">區域框架</span>
+          <ul>
+            <li>London Bagel 或 Artist Bakery</li>
+            <li>搭配北村、宮殿區景點</li>
+            <li>避免排隊店卡住預約景點</li>
+            <li>晚餐回弘大或另選區域</li>
+          </ul>
+        </article>
+        <article class="day-card" data-day="3">
+          <p class="day-date">12.14 MON · DAY 03</p>
+          <h3>聖水</h3>
+          <span class="day-status">需查週一公休</span>
+          <ul>
+            <li>午餐：Neungdong Minari</li>
+            <li>逛街途中：Maman Gelato</li>
+            <li>晚餐：Kkubdang</li>
+            <li>出發前複查三店週一營業</li>
+          </ul>
+        </article>
+        <article class="day-card" data-day="4">
+          <p class="day-date">12.15 TUE · DAY 04</p>
+          <h3>望遠／離境</h3>
+          <span class="day-status">等待航班資料</span>
+          <ul>
+            <li>依退房與航班時間調整</li>
+            <li>時間充裕才排望遠市場</li>
+            <li>Hoonhoon 糖餅當點心</li>
+            <li>預留回飯店取行李時間</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section wrap" id="districts" aria-labelledby="districtTitle">
+      <p class="chapter-label">Chapter 03 · Neighborhoods</p>
+      <h2 class="section-title" id="districtTitle">三個區域，三種旅行節奏</h2>
+      <p class="chapter-intro">收藏高度集中，最省力的方式不是逐店跑，而是把一天交給一個區域，再用主餐、點心、備案組合。</p>
+      <div class="district-grid">
+        <article class="district">
+          <span class="district-no">AREA 01 · 12 PLACES</span>
+          <h3>弘大／延南／望遠</h3>
+          <p>住宿與晚餐主場。弘大入口站周邊適合抵離日，延南洞適合散步與晚餐，望遠市場則需要獨立留出半日餘裕。</p>
+          <footer>角色：住宿基地 · 正餐選擇最多 · 宵夜備案</footer>
+        </article>
+        <article class="district">
+          <span class="district-no">AREA 02 · 2 PLACES</span>
+          <h3>安國／北村</h3>
+          <p>兩家都是熱門麵包店，重點是和歷史街區一起走，不要讓排隊吞掉整個上午。</p>
+          <footer>角色：早餐 · 早午餐 · 外帶</footer>
+        </article>
+        <article class="district">
+          <span class="district-no">AREA 03 · 3 PLACES</span>
+          <h3>聖水</h3>
+          <p>最完整的一日餐飲鏈：熱湯午餐、Gelato 休息、烤肉晚餐，步行與地鐵出口都集中。</p>
+          <footer>角色：午餐 · 甜點 · 晚餐</footer>
+        </article>
+      </div>
+    </section>
+
+    <section class="section wrap" id="lodging" aria-labelledby="lodgingTitle">
+      <p class="chapter-label">Chapter 04 · Stay</p>
+      <h2 class="section-title" id="lodgingTitle">住宿候選比較</h2>
+      <p class="chapter-intro">兩間都在弘大，但取向完全不同。住宿一旦確定，四天的出發點、寄放行李與離境日動線就能一起定下來。</p>
+      <table class="comparison">
+        <thead>
+          <tr><th>住宿</th><th>類型</th><th>車站距離</th><th>主要優點</th><th>預訂前確認</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Stay Passport</strong><br>札幌旅館風弘大</td>
+            <td>特色民宿／兩人房</td>
+            <td>弘大入口 9 號出口約 517 m</td>
+            <td>SPA、樓中樓、房間體驗鮮明</td>
+            <td>電梯、寄放行李、入住方式、取消政策</td>
+          </tr>
+          <tr>
+            <td><strong>Amanti Hotel Seoul</strong></td>
+            <td>四星級飯店</td>
+            <td>弘大入口 1 號出口約 485 m</td>
+            <td>前台、行李寄放與標準飯店服務較穩定</td>
+            <td>旅行日房價、房型、早餐與免費取消</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="handbook-checklist" aria-label="行前待辦">
+        <div class="check-item"><span class="check-box" aria-hidden="true"></span><span>確認抵達與離境航班</span></div>
+        <div class="check-item"><span class="check-box" aria-hidden="true"></span><span>選定住宿與取消條件</span></div>
+        <div class="check-item"><span class="check-box" aria-hidden="true"></span><span>決定需要預約的晚餐</span></div>
+        <div class="check-item"><span class="check-box" aria-hidden="true"></span><span>出發前複查週一公休</span></div>
+        <div class="check-item"><span class="check-box" aria-hidden="true"></span><span>下載 NAVER Maps 離線備查</span></div>
       </div>
     </section>
 
@@ -528,9 +947,12 @@
       </div>
     </div>
 
-    <section class="wrap" aria-labelledby="placesTitle">
+    <section class="wrap" id="places" aria-labelledby="placesTitle">
       <div class="result-line">
-        <h2 id="placesTitle">收藏地點</h2>
+        <div>
+          <p class="chapter-label">Chapter 05 · Place Guide</p>
+          <h2 id="placesTitle">美食與住宿圖鑑</h2>
+        </div>
         <span id="resultCount" aria-live="polite"></span>
       </div>
       <div id="placesRoot"></div>
@@ -543,7 +965,7 @@
   <footer>
     <div class="wrap">
       <p>資料來源：NAVER Maps「與豬豬文吃首爾」收藏清單及各地點頁。</p>
-      <p>本頁為單檔離線資料庫；只有開啟外部店家連結時需要網路。</p>
+      <p>手冊版本：Selection Draft 01 · 2026-08-28。只有開啟外部店家連結時需要網路。</p>
     </div>
   </footer>
 
