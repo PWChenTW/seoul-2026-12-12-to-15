@@ -1,0 +1,811 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="2026 年 12 月首爾旅行的 17 個收藏地點資料庫">
+  <title>與豬豬文吃首爾｜地點資料庫</title>
+  <style>
+    :root {
+      --ink: #1d2421;
+      --muted: #65706b;
+      --paper: #f7f4ec;
+      --card: #fffdf8;
+      --line: #ded9cd;
+      --pine: #17483b;
+      --pine-soft: #dfece6;
+      --coral: #d85f42;
+      --coral-soft: #f7e5df;
+      --gold: #d8ad55;
+      --shadow: 0 14px 34px rgba(25, 43, 36, 0.09);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 8% 2%, rgba(216, 173, 85, 0.17), transparent 27rem),
+        radial-gradient(circle at 94% 18%, rgba(23, 72, 59, 0.10), transparent 30rem),
+        var(--paper);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC",
+        "Noto Sans KR", sans-serif;
+      line-height: 1.62;
+    }
+
+    a { color: inherit; }
+
+    button, input, select { font: inherit; }
+
+    button:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    a:focus-visible {
+      outline: 3px solid rgba(216, 95, 66, 0.38);
+      outline-offset: 3px;
+    }
+
+    .wrap {
+      width: min(1180px, calc(100% - 32px));
+      margin-inline: auto;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 64px 0 40px;
+      color: #fff;
+      background: linear-gradient(135deg, #123e33 0%, #1b5949 65%, #256652 100%);
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      pointer-events: none;
+    }
+
+    .hero::before {
+      width: 340px;
+      height: 340px;
+      right: -70px;
+      top: -180px;
+      border: 72px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .hero::after {
+      width: 220px;
+      height: 220px;
+      left: 58%;
+      bottom: -180px;
+      background: rgba(216, 173, 85, 0.20);
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: #f3d48e;
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 780px;
+      margin: 0;
+      font-family: Georgia, "Noto Serif TC", serif;
+      font-size: clamp(2.25rem, 6vw, 4.4rem);
+      line-height: 1.04;
+      letter-spacing: -0.045em;
+    }
+
+    .hero-copy {
+      max-width: 720px;
+      margin: 20px 0 0;
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 1.04rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 26px;
+    }
+
+    .hero-meta span {
+      padding: 8px 13px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.88);
+      font-size: 0.88rem;
+      backdrop-filter: blur(8px);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: -22px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .stat {
+      min-height: 112px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255, 253, 248, 0.96);
+      box-shadow: var(--shadow);
+    }
+
+    .stat strong {
+      display: block;
+      color: var(--pine);
+      font-family: Georgia, serif;
+      font-size: 2rem;
+      line-height: 1;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .section {
+      padding: 44px 0 0;
+    }
+
+    .section-title {
+      margin: 0 0 18px;
+      font-family: Georgia, "Noto Serif TC", serif;
+      font-size: clamp(1.7rem, 4vw, 2.4rem);
+      line-height: 1.2;
+      letter-spacing: -0.025em;
+    }
+
+    .planning-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+
+    .planning-card {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255, 253, 248, 0.78);
+    }
+
+    .planning-card b {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--pine);
+      font-size: 0.94rem;
+    }
+
+    .planning-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .controls-shell {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      margin-top: 44px;
+      padding: 14px 0;
+      background: rgba(247, 244, 236, 0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(222, 217, 205, 0.72);
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: minmax(240px, 1fr) 190px 170px auto;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .control {
+      width: 100%;
+      min-height: 46px;
+      padding: 10px 13px;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      color: var(--ink);
+      background: var(--card);
+    }
+
+    .control::placeholder { color: #8b938f; }
+
+    .reset {
+      min-height: 46px;
+      padding: 10px 17px;
+      border: 0;
+      border-radius: 13px;
+      color: #fff;
+      background: var(--pine);
+      cursor: pointer;
+      font-weight: 750;
+    }
+
+    .result-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: baseline;
+      margin: 27px 0 16px;
+    }
+
+    .result-line h2 {
+      margin: 0;
+      font-family: Georgia, "Noto Serif TC", serif;
+      font-size: 1.55rem;
+    }
+
+    #resultCount {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .area-block { margin-bottom: 44px; }
+
+    .area-heading {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 14px;
+      color: var(--pine);
+      font-size: 1.12rem;
+    }
+
+    .area-heading::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--line);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .place-card {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--card);
+      box-shadow: 0 8px 24px rgba(29, 36, 33, 0.05);
+      transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+    }
+
+    .place-card:hover {
+      transform: translateY(-2px);
+      border-color: #c7bfae;
+      box-shadow: var(--shadow);
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .place-number {
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      color: var(--pine);
+      background: var(--pine-soft);
+      font-family: Georgia, serif;
+      font-weight: 800;
+    }
+
+    .place-title {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .place-title h3 {
+      margin: 0;
+      font-size: 1.16rem;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .place-title p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 0.91rem;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin: 16px 0;
+    }
+
+    .chip {
+      padding: 5px 9px;
+      border-radius: 999px;
+      color: var(--pine);
+      background: var(--pine-soft);
+      font-size: 0.76rem;
+      font-weight: 750;
+    }
+
+    .chip.warm {
+      color: #9a3e29;
+      background: var(--coral-soft);
+    }
+
+    .facts {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 7px 10px;
+      margin: 0;
+      font-size: 0.88rem;
+    }
+
+    .facts dt { color: var(--muted); }
+    .facts dd { margin: 0; overflow-wrap: anywhere; }
+
+    .feature {
+      margin: 17px 0 0;
+      padding: 14px 15px;
+      border-left: 3px solid var(--gold);
+      border-radius: 0 12px 12px 0;
+      background: #faf5e8;
+      font-size: 0.9rem;
+    }
+
+    .plan-note {
+      margin: 15px 0 0;
+      font-size: 0.9rem;
+    }
+
+    .plan-note b { color: var(--pine); }
+
+    .caution {
+      margin: 9px 0 0;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .card-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: auto;
+      padding-top: 18px;
+    }
+
+    .card-actions a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 39px;
+      padding: 8px 12px;
+      border-radius: 11px;
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 750;
+    }
+
+    .primary-link { color: #fff; background: var(--pine); }
+    .secondary-link { color: var(--pine); background: var(--pine-soft); }
+
+    .empty {
+      padding: 52px 20px;
+      border: 1px dashed #bfb7a7;
+      border-radius: var(--radius);
+      color: var(--muted);
+      text-align: center;
+      background: rgba(255, 253, 248, 0.55);
+    }
+
+    .disclaimer {
+      margin: 10px 0 56px;
+      padding: 20px 22px;
+      border: 1px solid #e9c8bc;
+      border-radius: 16px;
+      color: #734638;
+      background: #fbede8;
+      font-size: 0.88rem;
+    }
+
+    footer {
+      padding: 30px 0 42px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      font-size: 0.84rem;
+    }
+
+    footer p { margin: 4px 0; }
+
+    @media (max-width: 920px) {
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .planning-grid { grid-template-columns: repeat(2, 1fr); }
+      .controls { grid-template-columns: 1fr 1fr; }
+      .controls .search { grid-column: 1 / -1; }
+      .cards { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 560px) {
+      .wrap { width: min(100% - 22px, 1180px); }
+      .hero { padding-top: 46px; }
+      .stats { gap: 8px; }
+      .stat { min-height: 98px; padding: 16px; }
+      .planning-grid { grid-template-columns: 1fr; }
+      .controls { grid-template-columns: 1fr; }
+      .controls .search { grid-column: auto; }
+      .place-card { padding: 18px; }
+      .facts { grid-template-columns: 62px 1fr; }
+    }
+
+    @media print {
+      body { background: #fff; }
+      .hero { padding: 28px 0; color: #111; background: #fff; border-bottom: 2px solid #111; }
+      .hero-copy, .hero-meta span { color: #333; }
+      .hero-meta span { border-color: #bbb; background: #fff; }
+      .hero::before, .hero::after, .controls-shell, .card-actions { display: none; }
+      .stats { margin-top: 16px; box-shadow: none; }
+      .stat, .place-card { box-shadow: none; break-inside: avoid; }
+      .cards { grid-template-columns: 1fr; }
+      .planning-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Seoul · 2026 Winter</p>
+      <h1>與豬豬文吃首爾</h1>
+      <p class="hero-copy">把 NAVER 收藏整理成一份離線可讀的地點資料庫。先按區域看，再用搜尋與篩選快速找出早餐、正餐、甜點、宵夜和住宿。</p>
+      <div class="hero-meta" aria-label="旅行資料">
+        <span>2026/12/12（六）– 12/15（二）</span>
+        <span>資料快照：2026/08/28</span>
+        <span>首爾 4 天 3 夜</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="wrap stats" aria-label="收藏統計">
+      <div class="stat"><strong>17</strong><span>收藏地點</span></div>
+      <div class="stat"><strong>12</strong><span>弘大／延南／望遠</span></div>
+      <div class="stat"><strong>2</strong><span>安國／北村</span></div>
+      <div class="stat"><strong>3</strong><span>聖水</span></div>
+    </section>
+
+    <section class="section wrap" aria-labelledby="planningTitle">
+      <h2 class="section-title" id="planningTitle">排程前先知道</h2>
+      <div class="planning-grid">
+        <article class="planning-card"><b>快速早餐</b><p>Isaac Toast 與 EGGDROP 二選一即可，都是弘大彈性選項。</p></article>
+        <article class="planning-card"><b>安國排隊店</b><p>London Bagel 與 Artist Bakery 可一間內用、一間外帶，不必各占一餐。</p></article>
+        <article class="planning-card"><b>聖水正餐</b><p>Neungdong Minari 偏熱湯午餐；Kkubdang 偏烤肉晚餐。</p></article>
+        <article class="planning-card"><b>弘大宵夜</b><p>No More Pizza、Puradak 都可保留為當晚看胃口的備案。</p></article>
+        <article class="planning-card"><b>住宿取向</b><p>Stay Passport 重房間體驗；Amanti 重視前台與標準飯店服務。</p></article>
+      </div>
+    </section>
+
+    <div class="controls-shell">
+      <div class="wrap controls" aria-label="地點篩選">
+        <input class="control search" id="searchInput" type="search" placeholder="搜尋店名、餐點、車站…" aria-label="搜尋地點">
+        <select class="control" id="areaSelect" aria-label="按區域篩選">
+          <option value="all">所有區域</option>
+          <option value="弘大／延南／望遠">弘大／延南／望遠</option>
+          <option value="安國／北村">安國／北村</option>
+          <option value="聖水">聖水</option>
+        </select>
+        <select class="control" id="kindSelect" aria-label="按種類篩選">
+          <option value="all">餐飲＋住宿</option>
+          <option value="餐飲">只看餐飲</option>
+          <option value="住宿">只看住宿</option>
+        </select>
+        <button class="reset" id="resetButton" type="button">清除篩選</button>
+      </div>
+    </div>
+
+    <section class="wrap" aria-labelledby="placesTitle">
+      <div class="result-line">
+        <h2 id="placesTitle">收藏地點</h2>
+        <span id="resultCount" aria-live="polite"></span>
+      </div>
+      <div id="placesRoot"></div>
+      <div class="disclaimer">
+        <strong>時間資訊提醒：</strong>頁面中的評分、評論數與營業時間是 2026-08-28 的 NAVER 快照。旅程包含週一、週二，出發前 7～14 天仍應複查公休日、最後點餐與預約規則。
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p>資料來源：NAVER Maps「與豬豬文吃首爾」收藏清單及各地點頁。</p>
+      <p>本頁為單檔離線資料庫；只有開啟外部店家連結時需要網路。</p>
+    </div>
+  </footer>
+
+  <script>
+    "use strict";
+
+    const places = [
+      {
+        id: 1, nameKo: "스프카레 츠메루", nameZh: "Tsumeru 湯咖哩",
+        area: "弘大／延南／望遠", kind: "餐飲", type: "日式湯咖哩",
+        address: "서울 마포구 양화로23길 4-11 1층", station: "弘大入口站 3 號出口 · 約 122 m",
+        snapshot: "4.92 · 343 則評論 · 20:20 最後點餐", phone: "0507-1327-0688", booking: "未確認",
+        feature: "雞腿、蔬菜、牛五花、蝦等湯咖哩，白飯可續。菜單快照 ₩12,000–15,900。",
+        use: "離車站很近，適合弘大午餐或抵達後第一餐。", caution: "熱門時段可能候位；12 月營業時間需複查。",
+        naverId: "2060683768", official: "https://www.instagram.com/tsumeru_soupcurry_kr/", tags: ["午餐", "正餐"]
+      },
+      {
+        id: 2, nameKo: "훈훈호떡", nameZh: "Hoonhoon 糖餅",
+        area: "弘大／延南／望遠", kind: "餐飲", type: "市場小吃",
+        address: "서울 마포구 포은로6길 25 지하1층 훈훈호떡", station: "望遠站 2 號出口 · 約 443 m",
+        snapshot: "1,785 則評論 · 20:30 結束營業", phone: "—", booking: "不適用",
+        feature: "種子、起司粉、黃豆粉、Oreo、玉米與冰淇淋糖餅，可刷卡、付現或轉帳。",
+        use: "望遠市場散步點心，和市場行程綁在一起最順。", caution: "不建議只為它從其他區域跨城前往。",
+        naverId: "1550726302", official: "https://www.instagram.com/hoonhoon_hotteok/", tags: ["點心", "望遠市場"]
+      },
+      {
+        id: 3, nameKo: "종로계림닭도리탕원조 연남점", nameZh: "鐘路桂林辣燉雞湯・延南店",
+        area: "弘大／延南／望遠", kind: "餐飲", type: "辣燉雞鍋",
+        address: "서울 마포구 동교로38길 33 102호", station: "弘大入口站 3 號出口 · 約 437 m",
+        snapshot: "316 則評論 · 20:30 最後點餐", phone: "02-335-3386", booking: "未確認",
+        feature: "多人共享的辣燉雞鍋，適合首爾 12 月的冷天晚餐；可外帶、有 Wi-Fi。",
+        use: "適合和延南洞散步排在同一段，兩人以上較好點餐。", caution: "鍋物占胃容量，不宜再緊接另一間正餐。",
+        naverId: "1993388905", official: "https://www.jongrokelim.com/", tags: ["晚餐", "鍋物", "延南洞"]
+      },
+      {
+        id: 4, nameKo: "이삭토스트 홍대점", nameZh: "Isaac Toast 弘大店",
+        area: "弘大／延南／望遠", kind: "餐飲", type: "韓式吐司",
+        address: "서울 마포구 와우산로 93", station: "弘大入口站 9 號出口 · 約 501 m",
+        snapshot: "1,546 則評論 · 20:40 最後點餐", phone: "02-333-2492", booking: "不適用",
+        feature: "培根馬鈴薯披薩吐司、烤牛肉吐司等；使用點餐機，二樓座位較多。",
+        use: "快速早餐或輕食，若本來要走弘益大學很順路。", caution: "和 EGGDROP 擇一即可；距地鐵比店名感覺稍遠。",
+        naverId: "37413985", official: "", tags: ["早餐", "快速"]
+      },
+      {
+        id: 5, nameKo: "에그드랍 홍대입구점", nameZh: "EGGDROP 弘大入口店",
+        area: "弘大／延南／望遠", kind: "餐飲", type: "雞蛋三明治",
+        address: "서울 마포구 홍익로 15 1층4호", station: "弘大入口站 9 號出口 · 約 337 m",
+        snapshot: "1,192 則評論 · 22:00 結束營業", phone: "0507-1354-4371", booking: "不適用",
+        feature: "蓬鬆雞蛋三明治，常見有培根雙起司、牛肉起司；店外點餐機，適合外帶。",
+        use: "早餐或行程空檔補給，比 Isaac 更接近弘大商圈中心。", caution: "連鎖店可當便利備案，不必犧牲特色餐廳時段。",
+        naverId: "1775390526", official: "http://www.eggdrop.co.kr/", tags: ["早餐", "外帶", "快速"]
+      },
+      {
+        id: 6, nameKo: "풍천장어 연남점", nameZh: "Pungcheon 鰻魚・延南店",
+        area: "弘大／延南／望遠", kind: "餐飲", type: "炭烤鰻魚",
+        address: "서울 마포구 동교로27길 39 1층 풍천장어", station: "弘大入口站 2 號出口 · 約 424 m",
+        snapshot: "4.58 · 1,377 則評論 · 21:30 最後點餐", phone: "0507-1351-8361", booking: "可預約",
+        feature: "鹽烤鰻魚，店員全程代烤；配飯、烤海苔、魷魚醬與宴席麵也受歡迎。",
+        use: "較正式、預算較高的弘大重點晚餐。", caution: "先確認最低點餐量與價格；決定要吃時建議預約。",
+        naverId: "11824418", official: "https://pungcheoneel.com/", tags: ["晚餐", "可預約", "代烤"]
+      },
+      {
+        id: 7, nameKo: "한사발포차 연남점", nameZh: "Hansabal 布帳馬車・延南店",
+        area: "弘大／延南／望遠", kind: "餐飲", type: "韓式料理酒館",
+        address: "서울 마포구 동교로 259 1층", station: "弘大入口站 3 號出口 · 約 538 m",
+        snapshot: "2,847 則評論 · 翌日 02:00 最後點餐", phone: "頁面未公開", booking: "可預約",
+        feature: "牛腸辣燉雞鍋、辣燉雞、蛋餃與甜蛋吐司；約 80 席，適合多人聚餐。",
+        use: "晚餐續攤或宵夜，適合想喝酒、吃鍋物的晚上。", caution: "偏熱鬧聚餐氣氛；想安靜吃飯可改選其他店。",
+        naverId: "2043240114", official: "", tags: ["晚餐", "宵夜", "酒館", "可預約"]
+      },
+      {
+        id: 8, nameKo: "노모어피자 홍대점", nameZh: "No More Pizza 弘大店",
+        area: "弘大／延南／望遠", kind: "餐飲", type: "披薩",
+        address: "서울 마포구 와우산로21길 20 1층 중앙호", station: "弘大入口站 9 號出口 · 約 512 m",
+        snapshot: "246 則評論 · 翌日 04:00 結束營業", phone: "頁面未公開", booking: "可預約",
+        feature: "披薩，可內用、外帶、外送與預約。",
+        use: "深夜回住宿前的彈性宵夜，不必先占正式餐次。", caution: "收藏頁菜單摘要較少，真要吃時再依當日菜單決定。",
+        naverId: "1892207893", official: "https://www.instagram.com/nomorepizza.kr/", tags: ["宵夜", "外送", "外帶"]
+      },
+      {
+        id: 9, nameKo: "푸라닭 홍대점", nameZh: "Puradak Chicken 弘大店",
+        area: "弘大／延南／望遠", kind: "餐飲", type: "韓式炸雞",
+        address: "서울 마포구 어울마당로 113-1 2, 3층", station: "弘大入口站 9 號出口 · 約 155 m",
+        snapshot: "21 則評論 · 翌日 02:00 結束營業", phone: "0507-1479-9206", booking: "可預約",
+        feature: "連鎖韓式炸雞，二、三樓店面，可預約、外帶與外送。",
+        use: "離車站近的宵夜／外帶備案，當晚想吃再去。", caution: "此分店評論樣本很少，不宜直接和其他店比較。",
+        naverId: "2069310989", official: "", tags: ["宵夜", "炸雞", "外送"]
+      },
+      {
+        id: 10, nameKo: "미쓰족발 홍대본점", nameZh: "Myth Jokbal 弘大本店",
+        area: "弘大／延南／望遠", kind: "餐飲", type: "豬腳／菜包豬腳",
+        address: "서울 마포구 어울마당로 123-1", station: "弘大入口站 9 號出口 · 約 129 m",
+        snapshot: "4.44 · 1,223 則評論 · 23:00 最後點餐", phone: "0507-1381-2125", booking: "可預約",
+        feature: "以沙拉搭配豬腳聞名；適合多人共享，可外帶或外送。",
+        use: "交通方便的弘大晚餐，想吃豬腳時可列為主餐。", caution: "份量適合共享；避免和鰻魚或鍋物排同一晚。",
+        naverId: "31346986", official: "", tags: ["晚餐", "豬腳", "可預約"]
+      },
+      {
+        id: 11, nameKo: "스테이 패스포트 삿포로 료칸 서울 홍대", nameZh: "Stay Passport Sapporo Ryokan Seoul Hongdae",
+        area: "弘大／延南／望遠", kind: "住宿", type: "特色民宿",
+        address: "서울 마포구 홍익로 3-28", station: "弘大入口站 9 號出口 · 約 517 m",
+        snapshot: "NAVER 未顯示星等或足夠評論", phone: "0507-1316-4187", booking: "需另查房況",
+        feature: "札幌旅館風格、SPA、樓中樓、兩人房、新建築。",
+        use: "重視兩人房體驗與私密住宿時可列入候選。", caution: "預訂前另查取消政策、行李寄放、電梯、入住方式與合法登記。",
+        naverId: "2043847612", official: "https://www.instagram.com/stay.passport/", tags: ["住宿", "兩人房", "SPA"]
+      },
+      {
+        id: 12, nameKo: "아만티 호텔 서울", nameZh: "Amanti Hotel Seoul",
+        area: "弘大／延南／望遠", kind: "住宿", type: "四星級飯店",
+        address: "서울 마포구 월드컵북로 31", station: "弘大入口站 1 號出口 · 約 485 m",
+        snapshot: "四星級 · 173 則評論", phone: "02-334-3111", booking: "需另查房況",
+        feature: "正規飯店，提供 Wi-Fi、停車與前台服務；比弘大鬧區中心稍安靜。",
+        use: "重視前台、寄放行李與標準飯店服務時較穩妥。", caution: "比較旅行日期的實際房價、房型與免費取消條件。",
+        naverId: "37903636", official: "http://www.hotelamanti.com/", tags: ["住宿", "飯店", "四星"]
+      },
+      {
+        id: 13, nameKo: "런던베이글뮤지엄 안국", nameZh: "London Bagel Museum 安國",
+        area: "安國／北村", kind: "餐飲", type: "貝果／早午餐",
+        address: "서울 종로구 북촌로4길 20", station: "安國站 2 號出口 · 約 304 m",
+        snapshot: "4.3 · 約 2.1 萬則評論 · 18:00 結束營業", phone: "—", booking: "Catchtable",
+        feature: "蔥花椒鹽脆餅貝果、培根馬鈴薯三明治、起司蜂蜜貝果、松露蘑菇湯。",
+        use: "和北村、昌德宮或景福宮排同一天，適合早午餐或外帶。", caution: "排隊風險最高，不要放在有硬性預約的景點之前。",
+        naverId: "1466975947", official: "https://app.catchtable.co.kr/ct/shop/london_bagel_museum_anguk", tags: ["早餐", "早午餐", "排隊", "Catchtable"]
+      },
+      {
+        id: 14, nameKo: "아티스트베이커리 안국", nameZh: "Artist Bakery 安國",
+        area: "安國／北村", kind: "餐飲", type: "鹽可頌／法棍／湯品",
+        address: "서울 종로구 율곡로 45 1층", station: "安國站 1 號出口 · 約 10 m",
+        snapshot: "9,055 則評論 · 20:00 結束營業", phone: "—", booking: "未確認",
+        feature: "軟／硬原味鹽可頌，以及蒜香、起司蜂蜜、伯爵奶醬、蔥奶油等口味。",
+        use: "地鐵出口即達，比 London Bagel 更適合順路外帶。", caution: "同樣可能排隊；不需要和 London Bagel 各占一個正餐。",
+        naverId: "1741938125", official: "https://www.instagram.com/artistbakery/", tags: ["早餐", "麵包", "外帶", "排隊"]
+      },
+      {
+        id: 15, nameKo: "마망젤라또 성수점", nameZh: "Maman Gelato 聖水店",
+        area: "聖水", kind: "餐飲", type: "Gelato／甜點",
+        address: "서울 성동구 연무장9길 8 1층", station: "聖水站 3 號出口 · 約 198 m",
+        snapshot: "6,335 則評論 · 21:00 結束營業", phone: "02-466-3373", booking: "未確認",
+        feature: "開心果 Chocolate-Tella、巧克力莓果聖代；可選杯、甜筒、雙或三口味。",
+        use: "聖水逛街中段的甜點休息，和 Kkubdang 都靠近 3 號出口。", caution: "熱門限定口味可能售罄；排隊但取餐流程通常快。",
+        naverId: "1057884253", official: "https://app.catchtable.co.kr/ct/shop/maman", tags: ["甜點", "Gelato", "聖水"]
+      },
+      {
+        id: 16, nameKo: "능동미나리 성수지점", nameZh: "Neungdong Minari 聖水店",
+        area: "聖水", kind: "餐飲", type: "韓食／湯飯",
+        address: "서울 성동구 연무장길 42 1, 2층", station: "聖水站 4 號出口 · 約 282 m",
+        snapshot: "5,832 則評論 · 23:30 最後點餐", phone: "02-2088-2435", booking: "未確認",
+        feature: "水芹牛骨湯、生牛肉拌飯、牛肉煎餅、水芹水煮肉鍋；兩層樓、翻桌較快。",
+        use: "很適合 12 月的熱湯午餐，可把烤肉留給晚餐。", caution: "熱門時段可能候位，但座位較多。",
+        naverId: "1594044291", official: "https://www.instagram.com/ndminari/", tags: ["午餐", "熱湯", "韓食"]
+      },
+      {
+        id: 17, nameKo: "꿉당 성수점", nameZh: "Kkubdang 聖水店",
+        area: "聖水", kind: "餐飲", type: "韓式烤豬肉",
+        address: "서울 성동구 성수이로20길 10 경협회관 104호", station: "聖水站 3 號出口 · 約 159 m",
+        snapshot: "2,680 則評論 · 22:15 最後點餐", phone: "0507-1358-6564", booking: "未確認",
+        feature: "KOKUMI 豬頸肉、KOKUMI 飯、現刨松露炸醬泡麵；店員代烤。",
+        use: "聖水重點晚餐，可和 Maman Gelato 組成同區餐前／餐後動線。", caution: "不可停車；熱門晚餐時段要預留候位時間。",
+        naverId: "1739440199", official: "", tags: ["晚餐", "烤肉", "代烤"]
+      }
+    ];
+
+    const areaOrder = ["弘大／延南／望遠", "安國／北村", "聖水"];
+    const root = document.querySelector("#placesRoot");
+    const searchInput = document.querySelector("#searchInput");
+    const areaSelect = document.querySelector("#areaSelect");
+    const kindSelect = document.querySelector("#kindSelect");
+    const resetButton = document.querySelector("#resetButton");
+    const resultCount = document.querySelector("#resultCount");
+
+    function escapeHtml(value) {
+      return String(value).replace(/[&<>'"]/g, char => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", "\"": "&quot;"
+      })[char]);
+    }
+
+    function cardTemplate(place) {
+      const naverUrl = `https://map.naver.com/p/entry/place/${place.naverId}`;
+      const phoneRow = place.phone && place.phone !== "—"
+        ? `<dt>電話</dt><dd>${escapeHtml(place.phone)}</dd>` : "";
+      const officialLink = place.official
+        ? `<a class="secondary-link" href="${escapeHtml(place.official)}" target="_blank" rel="noreferrer">店家／預約頁</a>` : "";
+      const chips = [place.type, ...place.tags.slice(0, 3)]
+        .map((tag, index) => `<span class="chip ${index > 0 ? "warm" : ""}">${escapeHtml(tag)}</span>`)
+        .join("");
+
+      return `
+        <article class="place-card" id="place-${place.naverId}">
+          <div class="card-top">
+            <div class="place-number" aria-hidden="true">${place.id}</div>
+            <div class="place-title">
+              <h3>${escapeHtml(place.nameKo)}</h3>
+              <p>${escapeHtml(place.nameZh)}</p>
+            </div>
+          </div>
+          <div class="chips">${chips}</div>
+          <dl class="facts">
+            <dt>交通</dt><dd>${escapeHtml(place.station)}</dd>
+            <dt>地址</dt><dd lang="ko">${escapeHtml(place.address)}</dd>
+            <dt>快照</dt><dd>${escapeHtml(place.snapshot)}</dd>
+            ${phoneRow}
+            <dt>預約</dt><dd>${escapeHtml(place.booking)}</dd>
+          </dl>
+          <p class="feature"><strong>吃什麼／看什麼：</strong>${escapeHtml(place.feature)}</p>
+          <p class="plan-note"><b>怎麼排：</b>${escapeHtml(place.use)}</p>
+          <p class="caution">注意：${escapeHtml(place.caution)}</p>
+          <div class="card-actions">
+            <a class="primary-link" href="${naverUrl}" target="_blank" rel="noreferrer">NAVER 地點頁</a>
+            ${officialLink}
+          </div>
+        </article>`;
+    }
+
+    function searchableText(place) {
+      return [
+        place.nameKo, place.nameZh, place.area, place.kind, place.type, place.address,
+        place.station, place.feature, place.use, place.caution, ...place.tags
+      ].join(" ").toLocaleLowerCase();
+    }
+
+    function render() {
+      const query = searchInput.value.trim().toLocaleLowerCase();
+      const selectedArea = areaSelect.value;
+      const selectedKind = kindSelect.value;
+
+      const filtered = places.filter(place => {
+        const areaMatch = selectedArea === "all" || place.area === selectedArea;
+        const kindMatch = selectedKind === "all" || place.kind === selectedKind;
+        const queryMatch = !query || searchableText(place).includes(query);
+        return areaMatch && kindMatch && queryMatch;
+      });
+
+      resultCount.textContent = `顯示 ${filtered.length}／${places.length} 個地點`;
+
+      if (!filtered.length) {
+        root.innerHTML = `<div class="empty">找不到符合條件的地點。試試較短的關鍵字，或清除篩選。</div>`;
+        return;
+      }
+
+      root.innerHTML = areaOrder.map(area => {
+        const areaPlaces = filtered.filter(place => place.area === area);
+        if (!areaPlaces.length) return "";
+        return `
+          <section class="area-block" aria-labelledby="area-${areaOrder.indexOf(area)}">
+            <h3 class="area-heading" id="area-${areaOrder.indexOf(area)}">${escapeHtml(area)} · ${areaPlaces.length}</h3>
+            <div class="cards">${areaPlaces.map(cardTemplate).join("")}</div>
+          </section>`;
+      }).join("");
+    }
+
+    searchInput.addEventListener("input", render);
+    areaSelect.addEventListener("change", render);
+    kindSelect.addEventListener("change", render);
+    resetButton.addEventListener("click", () => {
+      searchInput.value = "";
+      areaSelect.value = "all";
+      kindSelect.value = "all";
+      render();
+      searchInput.focus();
+    });
+
+    render();
+  </script>
+</body>
+</html>
