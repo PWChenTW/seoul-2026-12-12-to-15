@@ -370,6 +370,60 @@
       background: var(--coral-soft);
     }
 
+    .food-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 5px;
+      margin: 0 0 8px;
+      overflow: hidden;
+      border-radius: 15px;
+      background: #e7e0d3;
+    }
+
+    .food-photo {
+      position: relative;
+      min-width: 0;
+      aspect-ratio: 4 / 3;
+      margin: 0;
+      overflow: hidden;
+      background: #d8d0c1;
+    }
+
+    .food-photo a {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .food-photo img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 280ms ease;
+    }
+
+    .food-photo:hover img { transform: scale(1.045); }
+
+    .food-photo span {
+      position: absolute;
+      left: 7px;
+      bottom: 7px;
+      padding: 3px 6px;
+      border-radius: 999px;
+      color: #fff;
+      background: rgba(12, 35, 29, 0.72);
+      font-size: 0.62rem;
+      font-weight: 800;
+      backdrop-filter: blur(5px);
+    }
+
+    .food-photo-note {
+      margin: 0 0 15px;
+      color: var(--muted);
+      font-size: 0.71rem;
+    }
+
     .facts {
       display: grid;
       grid-template-columns: 72px 1fr;
@@ -659,6 +713,125 @@
       font-size: 0.86rem;
     }
 
+    .route-atlas {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .route-card {
+      padding: 20px;
+      border: 1px solid #c9d9d1;
+      border-radius: 20px;
+      background: linear-gradient(145deg, #f8fcf9, #eef5f1);
+      box-shadow: 0 8px 24px rgba(23, 72, 59, 0.06);
+    }
+
+    .route-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .route-kicker {
+      margin: 0 0 4px;
+      color: var(--coral);
+      font-size: 0.7rem;
+      font-weight: 850;
+      letter-spacing: 0.11em;
+    }
+
+    .route-head h3 {
+      margin: 0;
+      color: var(--pine);
+      font-family: Georgia, "Noto Serif TC", serif;
+      font-size: 1.16rem;
+    }
+
+    .route-mode {
+      flex: 0 0 auto;
+      padding: 5px 8px;
+      border-radius: 999px;
+      color: var(--pine);
+      background: #dfeee7;
+      font-size: 0.69rem;
+      font-weight: 800;
+    }
+
+    .route-stops {
+      position: relative;
+      display: flex;
+      gap: 0;
+      margin: 20px 0 14px;
+      padding: 0;
+      overflow-x: auto;
+      list-style: none;
+      scrollbar-width: thin;
+    }
+
+    .route-stops::before {
+      content: "";
+      position: absolute;
+      top: 7px;
+      left: 26px;
+      right: 26px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--coral), var(--gold), var(--pine));
+    }
+
+    .route-stop {
+      position: relative;
+      z-index: 1;
+      flex: 1 0 104px;
+      padding: 23px 6px 0;
+      color: #33483f;
+      text-align: center;
+      font-size: 0.72rem;
+      line-height: 1.35;
+    }
+
+    .route-stop::before {
+      content: attr(data-number);
+      position: absolute;
+      top: 0;
+      left: 50%;
+      display: grid;
+      place-items: center;
+      width: 16px;
+      height: 16px;
+      border: 2px solid #f8fcf9;
+      border-radius: 50%;
+      color: #fff;
+      background: var(--pine);
+      font-size: 0.55rem;
+      font-weight: 900;
+      transform: translateX(-50%);
+      box-shadow: 0 0 0 1px rgba(23, 72, 59, 0.24);
+    }
+
+    .route-note {
+      min-height: 38px;
+      margin: 0 0 13px;
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    .map-route-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      padding: 9px 13px;
+      border-radius: 11px;
+      color: #fff;
+      background: var(--pine);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+
     .district-grid {
       display: grid;
       grid-template-columns: 1.25fr 0.8fr 0.8fr;
@@ -741,6 +914,32 @@
 
     .photo-credits a { color: var(--pine); }
 
+    .food-credit-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .food-credit-group {
+      padding: 12px 13px;
+      border-radius: 12px;
+      background: #f4f0e7;
+    }
+
+    .food-credit-group h4 {
+      margin: 0 0 7px;
+      color: var(--pine);
+      font-size: 0.79rem;
+    }
+
+    .food-credit-group ol {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .food-credit-group li + li { margin-top: 5px; }
+
     .comparison {
       width: 100%;
       border-spacing: 0;
@@ -805,6 +1004,7 @@
       .stats { grid-template-columns: repeat(2, 1fr); }
       .planning-grid { grid-template-columns: repeat(2, 1fr); }
       .day-grid { grid-template-columns: repeat(2, 1fr); }
+      .route-atlas { grid-template-columns: 1fr; }
       .district-grid { grid-template-columns: 1fr; }
       .district { min-height: 230px; }
       .handbook-checklist { grid-template-columns: repeat(2, 1fr); }
@@ -821,6 +1021,7 @@
       .photo-journal figure:first-child { grid-column: auto; }
       .photo-journal figure { min-height: 300px; }
       .photo-credits ul { columns: 1; }
+      .food-credit-grid { grid-template-columns: 1fr; }
       .stats { gap: 8px; }
       .stat { min-height: 98px; padding: 16px; }
       .planning-grid { grid-template-columns: 1fr; }
@@ -850,6 +1051,9 @@
       .cards { grid-template-columns: 1fr; }
       .planning-grid { grid-template-columns: repeat(2, 1fr); }
       .day-grid { grid-template-columns: repeat(2, 1fr); }
+      .route-atlas { grid-template-columns: 1fr; }
+      .route-card { break-inside: avoid; }
+      .food-gallery { print-color-adjust: exact; }
       .district-grid { grid-template-columns: 1fr; }
       .district { min-height: 180px; print-color-adjust: exact; }
       .section { break-before: auto; }
@@ -976,6 +1180,7 @@
           </ul>
         </article>
       </div>
+      <div class="route-atlas" id="routeAtlas" aria-label="四日 Google Maps 路線圖"></div>
     </section>
 
     <section class="section wrap" id="districts" aria-labelledby="districtTitle">
@@ -1066,7 +1271,7 @@
       </div>
       <div id="placesRoot"></div>
       <div class="disclaimer">
-        <strong>時間資訊提醒：</strong>頁面中的評分、評論數與營業時間是 2026-08-28 的 NAVER 快照。旅程包含週一、週二，出發前 7～14 天仍應複查公休日、最後點餐與預約規則。
+        <strong>資訊提醒：</strong>評分、評論數與營業時間是 2026-08-28 的 NAVER 快照；出發前 7～14 天仍應複查公休日、最後點餐與預約規則。餐廳卡中的三張照片是該類料理的參考圖，不是收藏店家的實拍菜色。
       </div>
       <details class="photo-credits">
         <summary>照片來源與攝影者</summary>
@@ -1080,18 +1285,74 @@
           <li>Gelato：<a href="https://unsplash.com/photos/a-display-case-filled-with-different-types-of-ice-cream-dcd4jdc8IYA" target="_blank" rel="noreferrer">selaa_id / Unsplash</a></li>
         </ul>
       </details>
+      <details class="photo-credits">
+        <summary>45 張料理參考圖：作者、原始檔與授權</summary>
+        <p>圖片取自 Wikimedia Commons，已做尺寸縮放與 JPEG 壓縮；點餐廳卡上的照片也能直接開啟原始檔頁。</p>
+        <div class="food-credit-grid" id="foodCreditsRoot"></div>
+      </details>
     </section>
   </main>
 
   <footer>
     <div class="wrap">
       <p>資料來源：NAVER Maps「與豬豬文吃首爾」收藏清單及各地點頁。</p>
-      <p>手冊版本：Selection Draft 01 · 2026-08-28。只有開啟外部店家連結時需要網路。</p>
+      <p>手冊版本：Route &amp; Food Photo Edition · 2026-08-29。只有開啟地圖、店家與照片來源頁時需要網路。</p>
     </div>
   </footer>
 
+  <script src="food-photos.js"></script>
   <script>
     "use strict";
+
+    const foodPhotoSets = window.FOOD_PHOTOS || {};
+    const routePlans = [
+      {
+        day: "DAY 01 · 12.12",
+        title: "弘大抵達日散步線",
+        note: "先吃車站附近第一餐，再沿京義線林道走到延南洞；晚餐店可依最後選擇替換。",
+        stops: [
+          ["弘大入口站", "Hongik University Station, Seoul"],
+          ["Tsumeru 湯咖哩", "스프카레 츠메루 서울"],
+          ["京義線林道", "Gyeongui Line Forest Park, Seoul"],
+          ["Pungcheon 鰻魚", "풍천장어 연남점 서울"]
+        ]
+      },
+      {
+        day: "DAY 02 · 12.13",
+        title: "安國／北村步行線",
+        note: "把兩間排隊麵包店放在歷史街區主線上；實際順序可依現場候位時間對調。",
+        stops: [
+          ["安國站", "Anguk Station, Seoul"],
+          ["Artist Bakery", "아티스트베이커리 안국"],
+          ["London Bagel", "런던베이글뮤지엄 안국"],
+          ["北村韓屋村", "Bukchon Hanok Village, Seoul"],
+          ["昌德宮", "Changdeokgung Palace, Seoul"]
+        ]
+      },
+      {
+        day: "DAY 03 · 12.14",
+        title: "聖水一日吃逛線",
+        note: "午餐、逛街、甜點、晚餐串成同區主線；出發前仍要複查三店週一是否營業。",
+        stops: [
+          ["聖水站", "Seongsu Station, Seoul"],
+          ["Neungdong Minari", "능동미나리 성수지점"],
+          ["鍊武場街", "Yeonmujang-gil, Seongsu, Seoul"],
+          ["Maman Gelato", "마망젤라또 성수점"],
+          ["Kkubdang", "꿉당 성수점"]
+        ]
+      },
+      {
+        day: "DAY 04 · 12.15",
+        title: "望遠市場／離境線",
+        note: "只有航班時間充裕時採用；走完回弘大取行李，再切換機場交通。",
+        stops: [
+          ["望遠站", "Mangwon Station, Seoul"],
+          ["望遠市場", "Mangwon Market, Seoul"],
+          ["Hoonhoon 糖餅", "훈훈호떡 서울"],
+          ["弘大入口站", "Hongik University Station, Seoul"]
+        ]
+      }
+    ];
 
     const places = [
       {
@@ -1263,8 +1524,44 @@
       })[char]);
     }
 
+    function googleDirectionsUrl(route) {
+      const queries = route.stops.map(([, query]) => query);
+      const params = new URLSearchParams({
+        api: "1",
+        origin: queries[0],
+        destination: queries.at(-1),
+        travelmode: "walking",
+        dir_action: "navigate"
+      });
+      if (queries.length > 2) params.set("waypoints", queries.slice(1, -1).join("|"));
+      return `https://www.google.com/maps/dir/?${params.toString()}`;
+    }
+
+    function renderRoutes() {
+      const routeRoot = document.querySelector("#routeAtlas");
+      routeRoot.innerHTML = routePlans.map(route => `
+        <article class="route-card">
+          <header class="route-head">
+            <div>
+              <p class="route-kicker">${escapeHtml(route.day)}</p>
+              <h3>${escapeHtml(route.title)}</h3>
+            </div>
+            <span class="route-mode">步行主線</span>
+          </header>
+          <ol class="route-stops">
+            ${route.stops.map(([label], index) => `
+              <li class="route-stop" data-number="${index + 1}">${escapeHtml(label)}</li>
+            `).join("")}
+          </ol>
+          <p class="route-note">${escapeHtml(route.note)}</p>
+          <a class="map-route-link" href="${escapeHtml(googleDirectionsUrl(route))}" target="_blank" rel="noreferrer">在 Google Maps 打開路線 ↗</a>
+        </article>
+      `).join("");
+    }
+
     function cardTemplate(place) {
       const naverUrl = `https://map.naver.com/p/entry/place/${place.naverId}`;
+      const googleUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${place.nameKo} ${place.address}`)}`;
       const phoneRow = place.phone && place.phone !== "—"
         ? `<dt>電話</dt><dd>${escapeHtml(place.phone)}</dd>` : "";
       const officialLink = place.official
@@ -1272,6 +1569,20 @@
       const chips = [place.type, ...place.tags.slice(0, 3)]
         .map((tag, index) => `<span class="chip ${index > 0 ? "warm" : ""}">${escapeHtml(tag)}</span>`)
         .join("");
+      const photos = foodPhotoSets[String(place.id)] || [];
+      const photoGallery = photos.length ? `
+        <div class="food-gallery" role="group" aria-label="${escapeHtml(place.nameZh)}的三張料理參考圖">
+          ${photos.map((photo, index) => `
+            <figure class="food-photo">
+              <a href="${escapeHtml(photo.source)}" target="_blank" rel="noreferrer" title="${escapeHtml(photo.title)} · ${escapeHtml(photo.credit)}">
+                <img src="${escapeHtml(photo.src)}" alt="${escapeHtml(place.type)}料理參考圖 ${index + 1}" loading="lazy" decoding="async">
+                <span>料理示意</span>
+              </a>
+            </figure>
+          `).join("")}
+        </div>
+        <p class="food-photo-note">三張菜色參考圖 · 點圖查看作者與原始授權頁</p>
+      ` : "";
 
       return `
         <article class="place-card" id="place-${place.naverId}">
@@ -1283,6 +1594,7 @@
             </div>
           </div>
           <div class="chips">${chips}</div>
+          ${photoGallery}
           <dl class="facts">
             <dt>交通</dt><dd>${escapeHtml(place.station)}</dd>
             <dt>地址</dt><dd lang="ko">${escapeHtml(place.address)}</dd>
@@ -1295,9 +1607,31 @@
           <p class="caution">注意：${escapeHtml(place.caution)}</p>
           <div class="card-actions">
             <a class="primary-link" href="${naverUrl}" target="_blank" rel="noreferrer">NAVER 地點頁</a>
+            <a class="secondary-link" href="${googleUrl}" target="_blank" rel="noreferrer">Google Maps</a>
             ${officialLink}
           </div>
         </article>`;
+    }
+
+    function renderFoodCredits() {
+      const creditRoot = document.querySelector("#foodCreditsRoot");
+      creditRoot.innerHTML = places
+        .filter(place => place.kind === "餐飲" && foodPhotoSets[String(place.id)])
+        .map(place => {
+          const credits = foodPhotoSets[String(place.id)].map((photo, index) => `
+            <li>
+              <a href="${escapeHtml(photo.source)}" target="_blank" rel="noreferrer">圖 ${index + 1}</a>：
+              ${escapeHtml(photo.credit)} ·
+              <a href="${escapeHtml(photo.licenseUrl)}" target="_blank" rel="noreferrer">${escapeHtml(photo.license)}</a>
+            </li>
+          `).join("");
+          return `
+            <section class="food-credit-group">
+              <h4>${escapeHtml(place.nameZh)}</h4>
+              <ol>${credits}</ol>
+            </section>
+          `;
+        }).join("");
     }
 
     function searchableText(place) {
@@ -1348,6 +1682,8 @@
       searchInput.focus();
     });
 
+    renderRoutes();
+    renderFoodCredits();
     render();
   </script>
 </body>
